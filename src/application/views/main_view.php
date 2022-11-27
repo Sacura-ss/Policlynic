@@ -1,7 +1,7 @@
 <header>
     <div class="name">Поликлиника</div>
     <ul class="menu">
-        <li><a href="">Профиль</a></li>
+        <li><a href="./signin">Профиль</a></li>
     </ul>
 </header>
 
