@@ -6,8 +6,7 @@
 </header>
 
 <!-- Форма регистрации -->
-<div class="body">
-    <!--enctype - позволяет передавать файлы через форму-->
+<div class="sign">
     <form method="post">
         <label>ФИО</label>
         <input type="text" name="full_name" placeholder="Введите свое полное имя">

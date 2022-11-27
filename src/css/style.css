@@ -106,8 +106,8 @@ header {
     width: 30%;
     border: 1px dashed grey;
 }
-/*-----------------------Sign In-----------------------------*/
-.body {
+/*------------------sign-------------------*/
+.sign {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -115,23 +115,23 @@ header {
     justify-content: center;
     font-family: Montserrat, sans-serif;
 }
-.body a {
+.sign a {
     color: #7c9ab7;
     font-weight: bold;
     text-decoration: none;
 }
 
-.body p {
+.sign p {
     margin: 10px 0;
 }
 
-.body form {
+.sign form {
     display: flex;
     flex-direction: column;
     width: 400px;
 }
 
-.body input {
+.sign input{
     margin: 10px 0;
     padding: 10px;
     border: unset;
@@ -139,7 +139,33 @@ header {
     outline: none;
 }
 
-.body button {
+.sign select {
+    margin: 10px 0;
+    padding: 10px;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+}
+#inputArea {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+#inputArea input{
+    margin: 10px 0;
+    padding: 10px;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+    outline: none;
+}
+
+#inputArea select {
+    margin: 10px 0;
+    padding: 10px;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+}
+
+.sign button {
     padding: 10px;
     background: #e3e3e3;
     border: unset;
@@ -149,7 +175,6 @@ header {
 .error {
     border-bottom: 2px solid #ff4332;
 }
-
 .msg {
     border: 2px solid #ffa908;
     border-radius: 3px;
@@ -157,7 +182,6 @@ header {
     text-align: center;
     font-weight: bold;
 }
-
 .none {
     display: none;
 }

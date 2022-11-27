@@ -5,8 +5,8 @@
     </ul>
 </header>
 
-<!-- Форма авторизации -->
-<div class="body">
+<!----Форма аторизации ---->
+<div class="sign">
     <form method="post">
         <label>Логин</label>
         <input type="text" name="login" placeholder="Введите свой логин">
@@ -24,3 +24,4 @@
         ?>
     </form>
 </div>
+
