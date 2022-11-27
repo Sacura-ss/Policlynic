@@ -10,4 +10,15 @@ class Model_Signup extends Model
         echo "<script>console.group('".$label."');console.log('".$str."');console.groupEnd();</script>";
     }
 
+    public function get_specialities()
+    {
+        $query = $this->mysqli->query("SELECT `nameSpeciality` FROM Speciality");
+        return $query;
+    }
+
+    public function get_categories()
+    {
+        $query = $this->mysqli->query("SELECT `nameCategory` FROM Categories");
+        return $query;
+    }
 }

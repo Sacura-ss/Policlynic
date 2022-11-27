@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id()) {
+    session_start();
+}
 
 if ($_SESSION['user']) {
     header('Location: doctor');
@@ -9,7 +11,7 @@ if ($_SESSION['user']) {
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Главная</title>
+    <title>Поликлиника</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <script src="./js/js.js"></script>
 </head>

@@ -24,7 +24,19 @@
             <option value="doctor">Доктор</option>
             <option value="patient">Пациент</option>
         </select>
-        <div id="inputArea"></div>
+        <div id="inputArea" style="display: none">
+            <label id="l_speciality"  name="l_speciality">Специальность</label>
+            <select id="s_speciality" name="s_speciality"><?php echo $data[0];?></select>
+            <label id="l_category" name="l_category">Категория</label>
+            <select id="s_category" name="s_category"><?php echo $data[1];?></select>
+
+            <label id="l_date"  name="l_date">Дата рождения ГГГГ-ММ-ДД</label>
+            <input type="text" id="i_date"  name="i_date" placeholder="Введите дату рождения">
+            <label id="l_address"  name="l_address">Адрес</label>
+            <input type="text" id="i_address" name="i_address" placeholder="Введите адрес">
+            <label id="l_policy"  name="l_policy">Медицинский полис</label>
+            <input type="text" id="i_policy"  name="i_policy" placeholder="Введите номер медицинского полиса">
+        </div>
         <button type="submit">Зарегистрироваться</button>
         <p>
             У вас уже есть аккаунт? - <a href="signin">авторизируйтесь</a>!
