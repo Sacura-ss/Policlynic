@@ -20,7 +20,7 @@
         <input type="password" name="password_confirm" placeholder="Подтвердите пароль">
         <label>Врач или пациент?</label>
         <select id="user_type" name="user_type" onchange="parse_input()">
-            <option value="none">Не выбрано</option>
+            <option value="none" disabled selected>Не выбрано</option>
             <option value="doctor">Доктор</option>
             <option value="patient">Пациент</option>
         </select>
@@ -37,7 +37,7 @@
             <label id="l_policy"  name="l_policy">Медицинский полис</label>
             <input type="text" id="i_policy"  name="i_policy" placeholder="Введите номер медицинского полиса">
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" name="signup_btn">Зарегистрироваться</button>
         <p>
             У вас уже есть аккаунт? - <a href="signin">авторизируйтесь</a>!
         </p>

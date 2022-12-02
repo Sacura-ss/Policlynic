@@ -1,6 +1,6 @@
 <?php
 
-class Model_Signin extends Model
+class Model_Doctor extends Model
 {
 
     // метод для отладки
@@ -10,8 +10,4 @@ class Model_Signin extends Model
         echo "<script>console.group('".$label."');console.log('".$str."');console.groupEnd();</script>";
     }
 
-    function find_user($login, $password) {
-        $check_user = mysqli_query($this->mysqli, "SELECT * FROM `Users` WHERE `login` = '$login' AND `password` = '$password'");
-        return $check_user;
-    }
 }

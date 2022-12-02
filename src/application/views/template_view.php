@@ -1,12 +1,3 @@
-<?php
-if (session_id()) {
-    session_start();
-}
-
-if ($_SESSION['user']) {
-    header('Location: doctor');
-}
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>

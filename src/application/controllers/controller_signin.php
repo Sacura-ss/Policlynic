@@ -17,7 +17,48 @@ class Controller_signin extends Controller
 
     function action_index()
     {
-        $this->view->generate('signin_view.php', 'template_view.php', $data);
+        session_start();
+        $result = $this->check_user();
+        if(mysqli_num_rows($result) > 0) {
+            // преобразуем в норм массив
+            $user = mysqli_fetch_assoc($result);
+
+            $_SESSION['user'] = [
+                "id" => $user['id'],
+                "login" => $user['login']
+            ];
+            $this->view->generate('signin_view.php', 'template_view.php', $data);
+            //header('Location: ../doctor');
+        } else {
+            $_SESSION['message'] = 'Не верный логин или пароль';
+            //header('Location: ../doctor');
+        }
+
+    }
+
+    function check_user()
+    {
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+
+        $error_fields = [];
+
+        if ($login === '') {
+            $error_fields[] = 'login';
+        }
+
+        if ($password === '') {
+            $error_fields[] = 'password';
+        }
+
+        if (!empty($error_fields)) {
+            $_SESSION['message'] = 'Проверьте правильность полей ';
+            die();
+        }
+
+        $password = md5($password);
+
+        return $this->model->find_user($login, $password);
     }
 
 }

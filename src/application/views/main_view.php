@@ -22,8 +22,10 @@
                 <th>Категория</th>
             </tr>
             <?php
-            foreach ($data as $row) {
-                echo '<tr><td>' . $_POST['search1'] . '</td><td>' . $row['nameSpeciality'] . '</td><td>' . $row['nameCategory'] . '</td></tr>';
+            if(empty(!$data)) {
+                foreach ($data as $row) {
+                    echo '<tr><td>' . $_POST['search1'] . '</td><td>' . $row['nameSpeciality'] . '</td><td>' . $row['nameCategory'] . '</td></tr>';
+                }
             }
 
             ?>
@@ -45,8 +47,10 @@
                 <th>Описание</th>
             </tr>
             <?php
-            foreach ($data as $row) {
-                echo '<tr><td>' . $_POST['search2'] . '</td><td>' . $row['descriptionDiagnosis'] . '</td></tr>';
+            if(empty(!$data)) {
+                foreach ($data as $row) {
+                    echo '<tr><td>' . $_POST['search2'] . '</td><td>' . $row['descriptionDiagnosis'] . '</td></tr>';
+                }
             }
             ?>
         </table>

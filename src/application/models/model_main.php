@@ -25,7 +25,7 @@ class Model_Main extends Model
 
     public function get_diagnose($name_diagnosis)
     {
-        $query = $this->mysqli->query("SELECT `descriptionDiagnosis` 
+       $query = $this->mysqli->query("SELECT `descriptionDiagnosis` 
                         FROM Diagnoses where 
                         `nameDiagnosis` = '$name_diagnosis'");
 

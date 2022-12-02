@@ -17,6 +17,7 @@ class Controller_Main extends Controller
 
     function action_index()
     {
+        $data="";
         if(isset($_POST['search_doctor'])) {
             $search1 = $_POST['search1'];
             $data1 = $this->model->get_doctor($this->parse_FIO($search1));

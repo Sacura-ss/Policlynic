@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `Polyclinic`.`Categories` (
     `idCategory` INT NOT NULL AUTO_INCREMENT,
     `nameCategory` VARCHAR(45) NULL,
     PRIMARY KEY (`idCategory`));
-
+Со
 CREATE TABLE IF NOT EXISTS `Polyclinic`.`Diagnoses` (
     `idDiagnosis` INT NOT NULL AUTO_INCREMENT,
     `nameDiagnosis` VARCHAR(45) NULL,
