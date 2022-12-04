@@ -42,10 +42,10 @@
             У вас уже есть аккаунт? - <a href="signin">авторизируйтесь</a>!
         </p>
         <?php
-        if ($_SESSION['message']) {
-            echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
-        }
-        unset($_SESSION['message']);
+            if ($_SESSION['message']) {
+                echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
+            }
+            unset($_SESSION['message']);
         ?>
     </form>
 </div>

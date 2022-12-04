@@ -11,7 +11,6 @@ class Model_Signin extends Model
     }
 
     function find_user($login, $password) {
-        $check_user = mysqli_query($this->mysqli, "SELECT * FROM `Users` WHERE `login` = '$login' AND `password` = '$password'");
-        return $check_user;
+        return mysqli_query($this->mysqli, "SELECT * FROM `Users` WHERE `login` = '$login' AND `password` = '$password'");
     }
 }

@@ -18,10 +18,35 @@ class Controller_signup extends Controller
     function action_index()
     {
         session_start();
-        $this->fill_selectors();
+        $this->cl_print_r($_SESSION, "session");
+        $data = $this->fill_selectors();
+        $this->view->generate('signup_view.php', 'template_view.php', $data);
         if (isset($_POST['signup_btn'])) {
             $this->cl_print_r($_POST, "post");
-            $this->register();
+            # название ключей в post совпадают с name в form
+            $full_name = $_POST['full_name'];
+            $login = $_POST['login'];
+            $phone = $_POST['phone'];
+            $password = $_POST['password'];
+            $password_confirm = $_POST['password_confirm'];
+            $user_type = $_POST['user_type'];
+            $speciality = $_POST['s_speciality'];
+            $category = $_POST['s_category'];
+            $date = $_POST['i_date'];
+            $address = $_POST['i_address'];
+            $policy = $_POST['i_policy'];
+
+            $this->check_fields($full_name, $login, $phone, $password, $password_confirm,
+                $user_type, $speciality, $category, $date, $address, $policy);
+
+            $check_login = $this->model->check_login($login);
+            if (mysqli_num_rows($check_login) > 0) {
+                $_SESSION['message'] = 'Такой логин уже существует';
+                die();
+            }
+
+            $this->register($full_name, $login, $phone, $password, $password_confirm,
+                $user_type, $speciality, $category, $date, $address, $policy);
         }
 
     }
@@ -43,33 +68,12 @@ class Controller_signup extends Controller
         }
 
         $data = array($data1, $data2);
-        $this->cl_print_r($data, 'data');
 
-        $this->view->generate('signup_view.php', 'template_view.php', $data);
+        return $data;
     }
-    function register() {
-        # название ключей в post совпадают с name в form
-        $full_name = $_POST['full_name'];
-        $login = $_POST['login'];
-        $phone = $_POST['phone'];
-        $password = $_POST['password'];
-        $password_confirm = $_POST['password_confirm'];
-        $user_type = $_POST['user_type'];
-        $speciality = $_POST['s_speciality'];
-        $category = $_POST['s_category'];
-        $date = $_POST['i_date'];
-        $address = $_POST['i_address'];
-        $policy = $_POST['i_policy'];
 
-        $check_login = $this->model->check_login($login);
-        if (mysqli_num_rows($check_login) > 0) {
-            $_SESSION['message'] = 'Такой логин уже существует';
-            die();
-        }
-
-        $this->check_fields($full_name, $login, $phone, $password, $password_confirm,
-        $user_type, $speciality, $category, $date, $address, $policy);
-
+    function register($full_name, $login, $phone, $password, $password_confirm,
+                      $user_type, $speciality, $category, $date, $address, $policy) {
         if ($password == $password_confirm) {
             if(!$this->model->post_user($user_type, $login, $password)) {
                 $this->cl_print_r($user_type,'ooooh user'. error_reporting(E_ALL ^ E_DEPRECATED));
@@ -89,8 +93,12 @@ class Controller_signup extends Controller
                 if (!$this->model->post_patient($user_id, $FIO[0], $FIO[1], $FIO[3], $date, $phone, $address, $policy)) {
                     $this->cl_print_r($user_type,'ooooh patient'. error_reporting(E_ALL ^ E_DEPRECATED));
                 }
+                $this->cl_print_r($user_id, "user_id3");
             }
-            //header('location: signin');
+            header('location: signin');
+        }
+        else {
+            $_SESSION['message'] = 'Пароли не совпадают';
         }
     }
 
