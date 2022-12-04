@@ -18,6 +18,9 @@ class Controller_signin extends Controller
     function action_index()
     {
         session_start();
+        if ($_SESSION['user']) {
+            $this->signin_user_by_type();
+        }
         $this->cl_print_r($_SESSION, "session");
         if (isset($_POST['signin_btn'])) {
             $this->cl_print_r($_POST, "post");
@@ -33,6 +36,9 @@ class Controller_signin extends Controller
                 if (!$this->signin($result)) {
                     $_SESSION['message'] = 'Не верный логин или пароль';
                     //die();
+                }
+                else {
+                    $this->signin_user_by_type();
                 }
             }
         }
@@ -62,13 +68,24 @@ class Controller_signin extends Controller
 
             $_SESSION['user'] = [
                 "id" => $user['idUser'],
-                "login" => $user['login']
+                "login" => $user['login'],
+                "user_type" => $user['typeUser']
             ];
             return true;
             //header('Location: ../doctor');
         } else {
             return false;
             //header('Location: ../signin');
+        }
+    }
+
+    function signin_user_by_type()
+    {
+        if($_SESSION['user']['user_type'] == 'врач') {
+            header('location: doctor');
+        }
+        else {
+            header('location: patient');
         }
     }
 
