@@ -20,7 +20,6 @@ class Controller_signup extends Controller
         session_start();
         $this->cl_print_r($_SESSION, "session");
         $data = $this->fill_selectors();
-        $this->view->generate('signup_view.php', 'template_view.php', $data);
         if (isset($_POST['signup_btn'])) {
             $this->cl_print_r($_POST, "post");
             # название ключей в post совпадают с name в form
@@ -36,19 +35,31 @@ class Controller_signup extends Controller
             $address = $_POST['i_address'];
             $policy = $_POST['i_policy'];
 
-            $this->check_fields($full_name, $login, $phone, $password, $password_confirm,
-                $user_type, $speciality, $category, $date, $address, $policy);
-
-            $check_login = $this->model->check_login($login);
-            if (mysqli_num_rows($check_login) > 0) {
-                $_SESSION['message'] = 'Такой логин уже существует';
-                die();
+            if(!$this->check_fields($full_name, $login, $phone, $password, $password_confirm,
+                $user_type, $speciality, $category, $date, $address, $policy)) {
+                $_SESSION['message'] = 'Проверьте правильность полей ';
+                //die();
             }
+            else {
+                $check_login = $this->model->check_login($login);
+                if (mysqli_num_rows($check_login) > 0) {
+                    $_SESSION['message'] = 'Такой логин уже существует';
+                    //die();
+                }
+                else {
+                    if (!$this->register($full_name, $login, $phone, $password, $password_confirm,
+                        $user_type, $speciality, $category, $date, $address, $policy)) {
+                        $_SESSION['message'] = 'Пароли не совпадают';
+                    }
+                    else {
+                        $_SESSION['message'] = 'Вы авторизировались. Зайдите в аккаунт';
+                    }
 
-            $this->register($full_name, $login, $phone, $password, $password_confirm,
-                $user_type, $speciality, $category, $date, $address, $policy);
+                }
+
+            }
         }
-
+        $this->view->generate('signup_view.php', 'template_view.php', $data);
     }
 
     function fill_selectors()
@@ -95,10 +106,11 @@ class Controller_signup extends Controller
                 }
                 $this->cl_print_r($user_id, "user_id3");
             }
-            header('location: signin');
+            //header('location: signin');
+            return true;
         }
         else {
-            $_SESSION['message'] = 'Пароли не совпадают';
+            return false;
         }
     }
 
@@ -153,10 +165,7 @@ class Controller_signup extends Controller
             }
         }
 
-        if (!empty($error_fields)) {
-            $_SESSION['message'] = 'Проверьте правильность полей ';
-            die();
-        }
+        return empty($error_fields);
     }
 
     function parse_FIO($string_from_search)

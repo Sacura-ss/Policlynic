@@ -19,17 +19,25 @@ class Controller_signin extends Controller
     {
         session_start();
         $this->cl_print_r($_SESSION, "session");
-        $this->view->generate('signin_view.php', 'template_view.php', $data);
         if (isset($_POST['signin_btn'])) {
             $this->cl_print_r($_POST, "post");
             $login = $_POST['login'];
             $password = $_POST['password'];
-            $this->check_fields($login, $password);
-            $this->cl_print_r($_SESSION, "session1");
-            $result = $this->model->find_user($login, $password);
-            $this->signin($result);
-            $this->cl_print_r($_SESSION, "session2");
+
+            if(!$this->check_fields($login, $password)) {
+                $_SESSION['message'] = 'Проверьте правильность полей ';
+                //die();
+            }
+            else {
+                $result = $this->model->find_user($login, $password);
+                if (!$this->signin($result)) {
+                    $_SESSION['message'] = 'Не верный логин или пароль';
+                    //die();
+                }
+            }
         }
+        $this->view->generate('signin_view.php', 'template_view.php', $data);
+
     }
 
     function check_fields($login, $password)
@@ -44,11 +52,7 @@ class Controller_signin extends Controller
             $error_fields[] = 'password';
         }
 
-        if (!empty($error_fields)) {
-            $_SESSION['message'] = 'Проверьте правильность полей ';
-            $this->cl_print_r($_SESSION, "sessionINcheck");
-            die();
-        }
+        return empty($error_fields);
     }
     function signin($result)
     {
@@ -60,13 +64,12 @@ class Controller_signin extends Controller
                 "id" => $user['idUser'],
                 "login" => $user['login']
             ];
+            return true;
             //header('Location: ../doctor');
         } else {
-            $_SESSION['message'] = 'Не верный логин или пароль';
-            die();
+            return false;
             //header('Location: ../signin');
         }
-        $this->cl_print_r($_SESSION, "sessionINsign");
     }
 
 }
