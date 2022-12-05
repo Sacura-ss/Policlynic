@@ -33,8 +33,7 @@ class Controller_Patient extends Controller
     {
         $data = "";
         $result = $this->model->get_doctors();
-        $this->cl_print_r($result, "eeeee");
-        while ($row = $result["surname"] . ' ' . $result["name"] . ' ' . $result["middleName"]) {
+       while ($row = mysqli_fetch_array($result)) {
             $data = $data . "<option>$row[0]</option>";
         }
 

@@ -30,9 +30,9 @@ class Model_Patient extends Model
 
     public function get_doctors()
     {
-        $query = $this->mysqli->query("SELECT `surname`, `name`, `middleName` 
+        $query = $this->mysqli->query("SELECT concat(`surname`, ' ', `name`, ' ', `middleName`) 
                                         FROM Doctors");
-        return $query->fetch_array(MYSQLI_ASSOC);
+        return $query;
     }
 
 }
