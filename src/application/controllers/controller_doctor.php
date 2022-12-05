@@ -18,14 +18,37 @@ class Controller_Doctor extends Controller
     function action_index()
     {
         session_start();
-        $this->cl_print_r($_SESSION, "session");
+
+        // получаем id авторизированного врачв
         $doctor_id = $this->model->get_doctorId_by_userId($_SESSION["user"]["id"]);
-        $this->cl_print_r($doctor_id, "doctor_id");
         $data1 = array($this->model->get_doctor($doctor_id));
-        $data2 = array($this->model->get_appointments_for_doctor($doctor_id));
-        $data = array($data1, $data2);
-        $this->cl_print_r($data, "data");
+
+        $data2 = $this->fill_selectors();
+        $data = array($data1, $data2[0], $data2[1]);
+
         $this->view->generate('doctor_view.php', 'template_view.php', $data);
     }
+
+    function fill_selectors()
+    {
+        $data1 = "";
+        $result = $this->model->get_diagnoses();
+        while ($row = mysqli_fetch_array($result))
+        {
+            $data1 = $data1."<option>$row[0]</option>";
+        }
+
+        $data2 = "";
+        $result = $this->model->get_appointmentStatuses();
+        while ($row = mysqli_fetch_array($result))
+        {
+            $data2 = $data2."<option>$row[0]</option>";
+        }
+
+        $data = array($data1, $data2);
+
+        return $data;
+    }
+
 
 }

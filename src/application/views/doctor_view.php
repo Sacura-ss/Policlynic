@@ -35,28 +35,35 @@
 </div>
 <div class="wrapper2">
     <div class="header">Приемы</div>
-    <div class="cards_wrap">
-        <?php
-        if (empty(!$data)) {
-            foreach ($data[1] as $row) {
-                echo '<div class="card_item"> 
-            <div class="card_inner"> 
-                <div class="sea_name">' . $row['surname'] .' '. $row['name'] .' '. $row['middleName'] . '</div> 
-                <div class="date">' . $row['appointmentType'] . '</div> 
-                <div class="date">' . $row['shortDate'] . '</div> 
-                <div class="date">' . $row['time'] . '</div> 
-                <div class="date">' . $row['cabinet'] . '</div> 
-                <div class="date">' . $row['nameDiagnosis'] . '</div> 
-                <div class="date">' . $row['symptoms'] . '</div>
-                <a href="#" ">Удалить</a>
-                <a href="#" ">Редактировать</a>
-            </div> 
-        </div>`';
-            }
-        }
-        ?>
+    <div class="cards_wrap"></div>
+    <div class="form">
+        <h1>Добавить информацию о приеме</h1>
+        <form>
+            <label>Диагноз</label>
+            <div class="inputbox">
+                <select id="diagnosis-edit" name="diagnosis-edit"><?php echo $data[1];?></select>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="symptoms-edit" required="required">
+                <span>Симптомы</span>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="prescribedDrugs-edit" required="required">
+                <span>Препараты</span>
+            </div>
+            <label>Статус</label>
+            <div class="inputbox">
+                <select id="status-edit" name="status-edit"><?php echo $data[2];?></select>
+            </div>
+            <div class="inputbox">
+                <input type="button" onclick="updateAppointment()" value="Обновить">
+            </div>
+
+        </form>
     </div>
 </div>
+<script src="./js/appointment_doctor.js"></script>
+
 
 
 

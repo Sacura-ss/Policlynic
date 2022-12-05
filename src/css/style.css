@@ -313,3 +313,85 @@ header {
         font-size: 14px;
     }
 }
+/*-------------------Form-------------------------------*/
+.form {
+    margin-left: 50%;
+    margin-top: 40px;
+    -webkit-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    transform: translateX(-20%);
+}
+.form h1 {
+    font-size: 2em;
+    border-left: 5px solid #008CBA;
+    padding: 10px;
+    color: #000;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.form .inputbox {
+    position: relative;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 50px;
+}
+.form .inputbox input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 2px solid #000;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+.form .inputbox select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 2px solid #000;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1em;
+}
+.form .inputbox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    outline: none;
+    background: none;
+    font-size: 1em;
+}
+.form .inputbox:last-child {
+    margin-bottom: 0;
+}
+.form .inputbox span {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-size: 1em;
+    transition: 0.6s;
+    font-family: sans-serif;
+}
+.form .inputbox input:focus ~ span,
+.form .inputbox input:valid ~ span {
+    transform: translateX(-13px) translateY(-35px);
+    font-size: 1em;
+}
+.form .inputbox [type="button"] {
+    width: 50%;
+    background: #008CBA;
+    color: #fff;
+    border: #fff;
+}
+.form .inputbox:hover [type="button"] {
+    background: linear-gradient(45deg, greenyellow, dodgerblue);
+}

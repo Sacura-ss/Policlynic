@@ -30,14 +30,18 @@ class Model_Doctor extends Model
         return intval($query->fetch_array(MYSQLI_ASSOC)["idDoctor"]);
     }
 
-    public function get_appointments_for_doctor($doctor_id) {
-        $query = $this->mysqli->query("SELECT p.`surname`, p.`name`, p.`middleName`,
-       a.`appointmentType`, a.`shortDate`, a.`time`, a.`cabinet`, d.`nameDiagnosis`, a.`symptoms`
-                        FROM Appointment a, Patients p, Diagnoses d
-                        WHERE `idDoctor` = '$doctor_id'
-                        AND a.`idPatient` = p.`idPatient`
-                        AND d.`idDiagnosis` = a.`idDiagnosis`");
-
-        return $query->fetch_array(MYSQLI_ASSOC);
+    public function get_diagnoses()
+    {
+        $query = $this->mysqli->query("SELECT `nameDiagnosis` FROM Diagnoses");
+        return $query;
     }
+
+    public function get_appointmentStatuses()
+    {
+        $query = $this->mysqli->query("SELECT `nameAppointmentStatus` FROM AppointmentStatuses");
+        return $query;
+    }
+
+
+
 }
