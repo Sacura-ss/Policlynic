@@ -107,7 +107,7 @@ class Model_Appointment extends Model
 
     public function add_appointment($idDoctor, $idPatient, $appointmentType, $shortDate, $time, $cabinet, $idAppointmentStatus)
     {
-        $this->mysqli->query("INSERT INTO `Polyclinic`.`Appointment` (`idAppointment`, `idDoctor`, `idPatient`, `appointmentType`, `shortDate`, `time`, `cabinet`, `idAppointmentStatus`) 
+        return $this->mysqli->query("INSERT INTO `Polyclinic`.`Appointment` (`idAppointment`, `idDoctor`, `idPatient`, `appointmentType`, `shortDate`, `time`, `cabinet`, `idAppointmentStatus`) 
                                                                     VALUES (DEFAULT, '$idDoctor', '$idPatient', '$appointmentType', '$shortDate', '$time', '$cabinet', '$idAppointmentStatus')");
     }
 

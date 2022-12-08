@@ -144,7 +144,11 @@ class Controller_Appointment extends Controller
         $cabinet = rand(100, 300);
         $idAppointmentStatus = 2;
 
-        $this->model->add_appointment($idDoctor, $idPatient, $appointmentType, $shortDate, $time, $cabinet, $idAppointmentStatus);
+        $this->cl_print_r($_POST);
+
+        if($this->model->add_appointment($idDoctor, $idPatient, $appointmentType, $shortDate, $time, $cabinet, $idAppointmentStatus)) {
+            $this->cl_print_r(2, "hhhff");
+        }
 
         // код 201 - создано
         http_response_code(201);
