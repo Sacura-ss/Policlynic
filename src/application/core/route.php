@@ -16,12 +16,17 @@ class Route
         if ( !empty($routes[1]) )
         {
             $controller_name = $routes[1];
+
+
         }
 
-        // получаем имя экшена
+        //получаем имя экшена
         if ( !empty($routes[2]) )
         {
             $action_name = $routes[2];
+            if($controller_name = 'appointment') {
+                $action_name = 'index';
+            }
         }
 
         // добавляем префиксы
@@ -47,7 +52,7 @@ class Route
         else
         {
             // редирект на страницу 404
-            Route::ErrorPage404();
+            //Route::ErrorPage404();
         }
 
         // создаем контроллер
@@ -63,6 +68,12 @@ class Route
         {
             // редирект на страницу 404
             Route::ErrorPage404();
+        }
+
+        function cl_print_r ($var, $label = '')
+        {
+            $str = json_encode(print_r ($var, true));
+            echo "<script>console.group('".$label."');console.log('".$str."');console.groupEnd();</script>";
         }
 
     }

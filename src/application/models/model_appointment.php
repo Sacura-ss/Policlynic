@@ -35,7 +35,7 @@ class Model_Appointment extends Model
                         FROM Patients
                         WHERE `idUser` = '$user_id'");
 
-        return intval($query->fetch_array(MYSQLI_ASSOC)["idDoctor"]);
+        return intval($query->fetch_array(MYSQLI_ASSOC)["idPatient"]);
     }
 
     public function get_diagnoseId_by_diagnoseName($name_diagnosis)
@@ -123,6 +123,8 @@ class Model_Appointment extends Model
     {
         $this->mysqli->query("DELETE FROM `Appointment` WHERE `idAppointment` = '$id'");
     }
+
+
 
 
 }

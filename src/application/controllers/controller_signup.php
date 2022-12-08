@@ -18,6 +18,7 @@ class Controller_signup extends Controller
     function action_index()
     {
         session_start();
+        error_reporting(0);
         $this->cl_print_r($_SESSION, "session");
         $data = $this->fill_selectors();
         if (isset($_POST['signup_btn'])) {
@@ -95,13 +96,19 @@ class Controller_signup extends Controller
             $this->cl_print_r($user_type, "user_typr");
             $this->cl_print_r($this->model->get_specialityID_byName($speciality), "refac");
             if($user_type == 'doctor') {
-                if (!$this->model->post_doctor($user_id, $FIO[0], $FIO[1], $FIO[3], $phone, $this->model->get_specialityID_byName($speciality), $this->model->get_categoriesID_byName($category))) {
+                if (!$this->model->post_doctor($user_id, $FIO[0], $FIO[1], $FIO[2], $phone, $this->model->get_specialityID_byName($speciality), $this->model->get_categoriesID_byName($category))) {
                     $this->cl_print_r($user_type,'ooooh doctor'. error_reporting(E_ALL ^ E_DEPRECATED));
                 }
                 $this->cl_print_r($user_id, "user_id2");
+                $this->cl_print_r($FIO[0], "FIO[0]");
+                $this->cl_print_r($FIO[1], "FIO[1]");
+                $this->cl_print_r($FIO[2], "FIO[2]");
+                $this->cl_print_r($phone, "phone");
+                $this->cl_print_r($this->model->get_specialityID_byName($speciality), "speciality");
+                $this->cl_print_r($this->model->get_categoriesID_byName($category), "category");
             }
             elseif ($user_type == 'patient') {
-                if (!$this->model->post_patient($user_id, $FIO[0], $FIO[1], $FIO[3], $date, $phone, $address, $policy)) {
+                if (!$this->model->post_patient($user_id, $FIO[0], $FIO[1], $FIO[2], $date, $phone, $address, $policy)) {
                     $this->cl_print_r($user_type,'ooooh patient'. error_reporting(E_ALL ^ E_DEPRECATED));
                 }
                 $this->cl_print_r($user_id, "user_id3");

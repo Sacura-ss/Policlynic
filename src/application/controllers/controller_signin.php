@@ -18,12 +18,13 @@ class Controller_signin extends Controller
     function action_index()
     {
         session_start();
+        error_reporting(0);
         if ($_SESSION['user']) {
             $this->signin_user_by_type();
         }
-        $this->cl_print_r($_SESSION, "session");
+        //$this->cl_print_r($_SESSION, "session");
         if (isset($_POST['signin_btn'])) {
-            $this->cl_print_r($_POST, "post");
+            //$this->cl_print_r($_POST, "post");
             $login = $_POST['login'];
             $password = $_POST['password'];
 
@@ -71,6 +72,7 @@ class Controller_signin extends Controller
                 "login" => $user['login'],
                 "user_type" => $user['typeUser']
             ];
+            //$this->signin_user_by_type();
             return true;
             //header('Location: ../doctor');
         } else {

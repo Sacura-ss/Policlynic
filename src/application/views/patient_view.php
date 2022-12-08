@@ -8,7 +8,7 @@
 
 <br>
 <div class="uppper">
-    <div class="user_type">Врач</div>
+    <div class="user_type">Пациент</div>
     <ul class="exit">
         <li><a href="./logout" class="logout">Выход</a></li>
     </ul>

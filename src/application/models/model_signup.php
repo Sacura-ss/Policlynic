@@ -45,7 +45,7 @@ class Model_Signup extends Model
                         AND `login` = '$login'
                         AND `password` = '$password'");
 
-        return $query->fetch_array(MYSQLI_ASSOC);
+        return intval($query->fetch_array(MYSQLI_ASSOC)["idUser"]);
     }
 
     public function get_specialities()

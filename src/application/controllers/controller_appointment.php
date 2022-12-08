@@ -48,7 +48,7 @@ class Controller_Appointment extends Controller
                 if ($type == 'appointment') {
                     // существует ли id
                     if (isset($id)) {
-                        $this->getAppointment($id);
+                        $this->getAppointment($is_doctor,$id);
                     } else {
                         $this->getAppointments($is_doctor);
                     }
