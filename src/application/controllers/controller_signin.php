@@ -22,9 +22,7 @@ class Controller_signin extends Controller
         if ($_SESSION['user']) {
             $this->signin_user_by_type();
         }
-        //$this->cl_print_r($_SESSION, "session");
         if (isset($_POST['signin_btn'])) {
-            //$this->cl_print_r($_POST, "post");
             $login = $_POST['login'];
             $password = $_POST['password'];
 
