@@ -18,6 +18,7 @@ async function getAppointments() {
                 <div class="date">${app.symptoms}</div>
                 <div class="date">${app.prescribedDrugs}</div>
                 <div class="date">${app.nameAppointmentStatus}</div>
+                <a href="#" onClick="removeAppointment(${app.idAppointment})">Удалить</a>
                 <a href="#" onClick="selectAppointment('${app.idAppointment}', '${app.symptoms}',
                 '${app.prescribedDrugs}')">Редактировать</a>
             </div> 
@@ -57,6 +58,18 @@ async function updateAppointment() {
         await getAppointments();
     }
 
+}
+
+async function removeAppointment(id) {
+    const res = await fetch(`http://localhost:8000/appointment/${id}`, {
+        method: "DELETE"
+    });
+
+    const data = await res.json();
+
+    if(data.status === true) {
+        await getAppointments();
+    }
 }
 
 getAppointments();

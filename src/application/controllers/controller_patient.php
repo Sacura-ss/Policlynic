@@ -26,8 +26,6 @@ class Controller_Patient extends Controller
         $data2 = $this->fill_selectors();
         $data = array($data1, $data2);
 
-        $this->cl_print_r($_POST);
-
         $this->view->generate('patient_view.php', 'template_view.php', $data);
     }
 

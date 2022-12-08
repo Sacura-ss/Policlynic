@@ -24,7 +24,7 @@
         if (empty(!$data)) {
             foreach ($data[0] as $row) {
                 echo '<tr>
-                <td>' . $row['surname'] .' '. $row['name'] .' '. $row['middleName'] .'</td>
+                <td>' . $row['surname'] . ' ' . $row['name'] . ' ' . $row['middleName'] . '</td>
                 <td>' . $row['shortDateBirth'] . '</td>
                 <td>' . $row['numberMedicalPolicy'] . '</td></tr>';
             }
@@ -41,7 +41,7 @@
         <form>
             <label>Врач</label>
             <div class="inputbox">
-                <select id="doctors-edit" name="doctors-edit"><?php echo $data[1];?></select>
+                <select id="doctors-edit" name="doctors-edit"><?php echo $data[1]; ?></select>
             </div>
             <label>Тип</label>
             <div class="inputbox">
@@ -55,7 +55,6 @@
             </div>
         </form>
     </div>
-</div>
 </div>
 <script src="./js/appointment_patient.js"></script>
 
