@@ -27,9 +27,6 @@ async function addAppointment() {
     const doctor = document.getElementById('doctors-edit').value,
         type = document.getElementById('type-edit').value;
 
-    console.log(doctor);
-    console.log(type);
-
     let formData = new FormData();
     formData.append(`doctor`, doctor);
     formData.append(`type`, type);
@@ -41,13 +38,10 @@ async function addAppointment() {
 
     const data = await res.json();
 
-    console.log(data);
-
     if (data.status === true) {
         await getAppointments();
     }
 
-
-
 }
+
 getAppointments();

@@ -135,19 +135,18 @@ class Controller_Appointment extends Controller
 
     function addAppointment($data)
     {
-        $idDoctor = $this->model->get_doctorId_by_doctorName($data['doctor']);
+        $idDoctor = $this->model->get_doctorId_by_doctorName($this->parse_FIO($data['doctor']));
         $idPatient = $this->model->get_patientId_by_userId($_SESSION['user']['id']);
         $appointmentType = $data['type'];
         $t=time();
-        $shortDate = date("yy-m-d",$t);
-        $time = date("H:i:s",$t);
+        $shortDate = strval(date("yy-m-d",$t));
+        $time = strval(date("H:i:s",$t));
         $cabinet = rand(100, 300);
         $idAppointmentStatus = 2;
+        $idDiagnosis = 22;
 
-        //$this->cl_print_r($_POST);
-
-        if(!$this->model->add_appointment($idDoctor, $idPatient, $appointmentType, $shortDate, $time, $cabinet, $idAppointmentStatus)) {
-           // $this->cl_print_r(2, "hhhff");
+        if(!$this->model->add_appointment($idDoctor, $idPatient, $appointmentType, $shortDate, $time, $cabinet, $idDiagnosis, $idAppointmentStatus)) {
+           //$this->cl_print_r(2, "не записалось в бд");
         }
 
         // код 201 - создано
@@ -198,7 +197,5 @@ class Controller_Appointment extends Controller
 
         echo json_encode($answer);
     }
-
-
 
 }
